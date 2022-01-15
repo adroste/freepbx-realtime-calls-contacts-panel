@@ -1,0 +1,6 @@
+{
+  "freepbxConfFile": "./dev-resources/freepbx.conf",
+  "managerConfFile": "./dev-resources/manager.conf",
+
+  "serviceInstallFile": "./dev-resources/fpbx-call-panel.service"
+}

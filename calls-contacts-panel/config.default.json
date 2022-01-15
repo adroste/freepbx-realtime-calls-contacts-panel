@@ -1,0 +1,14 @@
+{
+  "freepbxConfFile": "/etc/freepbx.conf",
+  "managerConfFile": "/etc/asterisk/manager.conf",
+
+  "serviceInstallFile": "/lib/systemd/system/fpbx-call-panel.service",
+  "frontendBuildDir": "./frontend/build/",
+
+  "activeCallsCheckIntervalMs": 1000,
+  "callerIdPrefixes": [],
+  "callerIdResolveLength": 6,
+  "callLogsCheckIntervalMs": 3000,
+  "httpPort": 4848,
+  "phonebookCheckIntervalMs": 180000
+}

@@ -1,0 +1,189 @@
+import { MouseEvent, useCallback, useContext } from 'react';
+import { PencilAltIcon, PhoneIcon, TrashIcon, UserCircleIcon, XIcon } from '@heroicons/react/solid';
+
+import { Dialog } from '@headlessui/react';
+import { NumberTypeIcon } from './NumberTypeIcon';
+import { appContext } from './AppContext';
+import { useTranslation } from 'react-i18next';
+
+export function ContactViewerDialog() {
+  const { contactViewerDialogOptions, setContactViewerDialogOptions, makeCall } = useContext(appContext);
+  const { t } = useTranslation();
+
+  const onClose = useCallback(() => {
+    setContactViewerDialogOptions?.({
+      entry: undefined,
+      open: false,
+    });
+  }, [setContactViewerDialogOptions])
+
+  const onCallClick = useCallback((e: MouseEvent<HTMLElement>) => {
+    makeCall?.(e.currentTarget.dataset.number);
+    onClose();
+  }, [makeCall, onClose]);
+
+  const e = contactViewerDialogOptions?.entry;
+  if (!e)
+    return null;
+
+  const phoneNumbers = e.numbers?.filter(n => !n.flags.includes('fax')) || [];
+  const faxNumbers = e.numbers?.filter(n => n.flags.includes('fax')) || [];
+
+  return (
+    <Dialog
+      className="fixed inset-0 z-30 overflow-y-auto"
+      open={contactViewerDialogOptions?.open || false}
+      onClose={() => {}}
+      // onClose={onClose}
+    >
+      <div className="absolute left-0 right-0 top-0 min-h-screen flex items-center justify-center">
+        <Dialog.Overlay className="absolute inset-0 bg-slate-900 opacity-50" />
+        <div className="relative max-w-xl sm:w-[36rem] my-8 z-10 bg-white shadow-xl rounded-2xl">
+          <div className="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
+            <button
+              type="button"
+              className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:text-gray-500"
+              onClick={onClose}
+            >
+              <span className="sr-only">Close</span>
+              <XIcon className="h-6 w-6" aria-hidden="true" />
+            </button>
+          </div>
+          <Dialog.Title
+            as="div"
+            className="px-4 py-5 text-lg flex items-center font-medium leading-6 text-gray-900"
+          >
+            <UserCircleIcon className="w-8 h-8 pb-px mr-3 text-slate-400" />
+            <div>
+              <h3 className="text-lg leading-6 font-medium text-gray-900">{e.combinedName}</h3>
+              <p className="text-xs text-gray-500">{t('c.group')}: {e.groupName}</p>
+            </div>
+          </Dialog.Title>
+
+          <hr />
+
+          <div className="px-4 py-5">
+            <dl className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
+              {e.firstName &&
+                <div className="sm:col-span-1">
+                  <dt className="text-sm font-medium text-gray-500">{t('c.firstName')}</dt>
+                  <dd className="mt-1 text-sm text-gray-900">{e.firstName}</dd>
+                </div>
+              }
+              {e.lastName &&
+                <div className="sm:col-span-1">
+                  <dt className="text-sm font-medium text-gray-500">{t('c.lastName')}</dt>
+                  <dd className="mt-1 text-sm text-gray-900">{e.lastName}</dd>
+                </div>
+              }
+              {e.displayName &&
+                <div className="sm:col-span-1">
+                  <dt className="text-sm font-medium text-gray-500">{t('c.displayName')}</dt>
+                  <dd className="mt-1 text-sm text-gray-900">{e.displayName}</dd>
+                </div>
+              }
+              {e.title &&
+                <div className="sm:col-span-1">
+                  <dt className="text-sm font-medium text-gray-500">{t('c.title')}</dt>
+                  <dd className="mt-1 text-sm text-gray-900">{e.title}</dd>
+                </div>
+              }
+              {e.company &&
+                <div className="sm:col-span-1">
+                  <dt className="text-sm font-medium text-gray-500">{t('c.company')}</dt>
+                  <dd className="mt-1 text-sm text-gray-900">{e.company}</dd>
+                </div>
+              }
+              {e.address &&
+                <div className="sm:col-span-1">
+                  <dt className="text-sm font-medium text-gray-500">{t('c.address')}</dt>
+                  <dd className="mt-1 text-sm text-gray-900 whitespace-pre-wrap">{e.address}</dd>
+                </div>
+              }
+              {!!e.emails?.length &&
+                <div className="sm:col-span-1">
+                  <dt className="text-sm font-medium text-gray-500">{t('c.email')}</dt>
+                  {e.emails.map(email => (
+                    <dd className="mt-1 text-sm text-gray-900">
+                      <a href={`mailto:${email}`}>{email}</a>
+                    </dd>
+                  ))}
+                </div>
+              }
+              {!!e.websites?.length &&
+                <div className="sm:col-span-1">
+                  <dt className="text-sm font-medium text-gray-500">{t('c.website')}</dt>
+                  {e.websites.map(website => {
+                    let link = website;
+                    if (!link.startsWith('http'))
+                      link = 'http://' + link;
+                    return (
+                      <dd className="mt-1 text-sm text-gray-900">
+                        <a href={link} target="_blank" rel="noreferrer">{website}</a>
+                      </dd>
+                    );
+                  })}
+                </div>
+              }
+              {!!phoneNumbers.length &&
+                <div className="sm:col-span-2">
+                  <dt className="text-sm font-medium text-gray-500">{t('c.phoneNumbers')}</dt>
+                  {phoneNumbers.map(nr => (
+                    <dd className="mt-1 text-sm text-gray-900 flex items-center">
+                      <div className="w-4 h-4 text-slate-700"><NumberTypeIcon type={nr.type} /></div>
+                      <div className="ml-1 w-36">{t('numbertype.' + nr.type)}</div>
+                      <div>{nr.number}</div>
+                      <button
+                        className="ml-1 w-8 h-8 bg-white inline-flex items-center justify-center text-gray-400 rounded-full bg-transparent hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
+                        onClick={onCallClick}
+                        data-number={nr.number}
+                      >
+                        <PhoneIcon className="w-5 h-5" aria-hidden="true" />
+                      </button>
+                    </dd>
+                  ))}
+                </div>
+              }
+              {!!faxNumbers.length &&
+                <div className="sm:col-span-2">
+                  <dt className="text-sm font-medium text-gray-500">{t('c.fax')}</dt>
+                  {faxNumbers.map(nr => (
+                    <dd className="mt-1 text-sm text-gray-900 flex items-center">
+                      <div className="w-4 h-4 text-slate-700"><NumberTypeIcon type={nr.type} /></div>
+                      <div className="ml-1 w-36">{t('numbertype.' + nr.type)}</div>
+                      <div>{nr.number}</div>
+                    </dd>
+                  ))}
+                </div>
+              }
+            </dl>
+          </div>
+
+          <div className="px-4 py-5 flex items-end justify-end">
+            <button
+              type="button"
+              className="mr-2 inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-slate-900 bg-slate-100 border border-transparent rounded-md hover:bg-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-500"
+              onClick={onClose}
+            >
+              {t('Close')}
+            </button>
+            <button
+              type="submit"
+              className="mr-2 inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-red-900 bg-red-100 border border-transparent rounded-md hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-red-500"
+            >
+              <TrashIcon className="w-4 h-4 mr-1" />
+              {t('Delete')}
+            </button>
+            <button
+              type="submit"
+              className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-sky-900 bg-sky-100 border border-transparent rounded-md hover:bg-sky-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-sky-500"
+            >
+              <PencilAltIcon className="w-4 h-4 mr-1" />
+              {t('Edit')}
+            </button>
+          </div>
+        </div>
+      </div>
+    </Dialog>
+  );
+}

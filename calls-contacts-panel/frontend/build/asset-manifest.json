@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "/callpanel/static/css/main.718e6438.css",
+    "main.js": "/callpanel/static/js/main.e47dd80a.js",
+    "static/media/inter-all-800-normal.woff": "/callpanel/static/media/inter-all-800-normal.f559c947ce2eb7c3105e.woff",
+    "static/media/inter-all-600-normal.woff": "/callpanel/static/media/inter-all-600-normal.74b76e83a7929da53075.woff",
+    "static/media/inter-all-400-normal.woff": "/callpanel/static/media/inter-all-400-normal.e71ac35377dd87cb4d4b.woff",
+    "static/media/inter-latin-ext-800-normal.woff2": "/callpanel/static/media/inter-latin-ext-800-normal.aa1d8fea5dc762733ba9.woff2",
+    "static/media/inter-latin-ext-600-normal.woff2": "/callpanel/static/media/inter-latin-ext-600-normal.9f8678a6e3bb14b85dd9.woff2",
+    "static/media/inter-latin-ext-400-normal.woff2": "/callpanel/static/media/inter-latin-ext-400-normal.0acc5fd627837a66a54c.woff2",
+    "static/media/inter-latin-800-normal.woff2": "/callpanel/static/media/inter-latin-800-normal.a11264c4a9740da28e81.woff2",
+    "static/media/inter-latin-600-normal.woff2": "/callpanel/static/media/inter-latin-600-normal.5ac6cfcfe4108829fdfc.woff2",
+    "static/media/inter-latin-400-normal.woff2": "/callpanel/static/media/inter-latin-400-normal.5e6a773da9d1377fc690.woff2",
+    "static/media/inter-cyrillic-ext-800-normal.woff2": "/callpanel/static/media/inter-cyrillic-ext-800-normal.4f52a1be389dcf5af470.woff2",
+    "static/media/inter-cyrillic-ext-600-normal.woff2": "/callpanel/static/media/inter-cyrillic-ext-600-normal.55338fa435567212685f.woff2",
+    "static/media/inter-cyrillic-ext-400-normal.woff2": "/callpanel/static/media/inter-cyrillic-ext-400-normal.18c349d70f5019a6d29b.woff2",
+    "static/media/inter-greek-800-normal.woff2": "/callpanel/static/media/inter-greek-800-normal.b5926131c4bdf87d3e9a.woff2",
+    "static/media/inter-greek-600-normal.woff2": "/callpanel/static/media/inter-greek-600-normal.4ba9578a100d33965f9d.woff2",
+    "static/media/inter-greek-400-normal.woff2": "/callpanel/static/media/inter-greek-400-normal.f9ed81eb6c1d26e7a6ec.woff2",
+    "static/media/inter-cyrillic-800-normal.woff2": "/callpanel/static/media/inter-cyrillic-800-normal.c62ae79dc9e7780ed1d0.woff2",
+    "static/media/inter-cyrillic-600-normal.woff2": "/callpanel/static/media/inter-cyrillic-600-normal.60093b40e6c39efe75e8.woff2",
+    "static/media/inter-cyrillic-400-normal.woff2": "/callpanel/static/media/inter-cyrillic-400-normal.b20b645d542bcc27ebe9.woff2",
+    "static/media/inter-greek-ext-800-normal.woff2": "/callpanel/static/media/inter-greek-ext-800-normal.1c07eebddd66d99e3c56.woff2",
+    "static/media/inter-greek-ext-600-normal.woff2": "/callpanel/static/media/inter-greek-ext-600-normal.8155e3e4ecccea169a39.woff2",
+    "static/media/inter-greek-ext-400-normal.woff2": "/callpanel/static/media/inter-greek-ext-400-normal.b0ec0b8d1c8c5aac1917.woff2",
+    "static/media/inter-vietnamese-600-normal.woff2": "/callpanel/static/media/inter-vietnamese-600-normal.4a42ae0601b157d81b53.woff2",
+    "static/media/inter-vietnamese-800-normal.woff2": "/callpanel/static/media/inter-vietnamese-800-normal.fe2bb78b04cbcc90d40e.woff2",
+    "static/media/inter-vietnamese-400-normal.woff2": "/callpanel/static/media/inter-vietnamese-400-normal.fac160b02ecb5416d760.woff2",
+    "index.html": "/callpanel/index.html",
+    "static/media/getFetch.cjs": "/callpanel/static/media/getFetch.c780682470504fffbd04.cjs",
+    "main.718e6438.css.map": "/callpanel/static/css/main.718e6438.css.map",
+    "main.e47dd80a.js.map": "/callpanel/static/js/main.e47dd80a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.718e6438.css",
+    "static/js/main.e47dd80a.js"
+  ]
+}

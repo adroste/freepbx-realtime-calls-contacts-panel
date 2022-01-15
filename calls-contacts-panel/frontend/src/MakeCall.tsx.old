@@ -1,0 +1,31 @@
+import { PhoneIcon } from '@heroicons/react/solid';
+import { useCallback } from 'react';
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
+export function MakeCall() {
+  const { t } = useTranslation();
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = useCallback(data => {
+    console.dir(data);
+  }, []);
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} className="flex">
+      <input {...register('to')} type="tel" placeholder={t('To')}
+        className="focus:ring-sky-500 focus:ring-2 w-40 border-none rounded-l-md focus:z-10 sm:text-sm"
+      />
+      <input {...register('from')} type="tel" placeholder={t('From')} 
+        className="focus:ring-sky-500 focus:ring-2 w-20 mx-1 border-none rounded-none focus:z-10 sm:text-sm"
+      />
+      <button 
+        type="submit"
+        className="inline-flex items-center justify-center py-2 px-4 shadow-sm text-sm font-medium border-none rounded-r-md text-white bg-sky-800 hover:bg-sky-900 focus:outline-none focus:ring-2 focus:ring-sky-500"
+      >
+        <PhoneIcon className="w-4 h-4"/>
+        {/* {t('Call')} */}
+      </button>
+    </form>
+  );
+}
