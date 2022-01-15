@@ -5,33 +5,34 @@ It is a realtime panel to view and manage calls and contacts.
 
 Suited for use at Home and Small Businesses.
 
-Written in NodeJS, React and PHP (only glue).
-
 Compatible and tested on FreePBX version: **16.0.x**
+
+Written in NodeJS, React and PHP (only glue).
 
 ## Features
 
-* Realtime Call Monitoring
+* **Realtime Call Monitoring**
   * View Active Calls (Incoming/Outgoing)
   * View Call Logs
-* Better CallerID Lookup
+* **Better CallerID Lookup**
   * CallerID for Incoming and Outgoing Calls
   * Integrates with CallerID Lookup Module 
     * Custom Lookup Rest Endpoint
     * Can match Numbers with and without custom area codes
-* Better Contact Management
+* **Better Contact Management**
   * Integrates with FreePBX ContactManager
   * Create/Update/Delete Contacts with beautiful UI
   * Save unknown Numbers from Call Logs directly as new Contacts
   * Add unknown Numbers from Calls Logs directly to already existing Contacts (via a Search feature)
-* Start Calls directly from the browser from any extension (or ring group) to any number
-* Beautiful UI (React + NodeJS)
-* Multi-Language Support
+* **Start Calls directly from the browser from any extension (or ring group) to any number**
+* **Beautiful UI (React + NodeJS)**
+* **Multi-Language Support**
   * supported Languages (yet): English 🇺🇸🇬🇧, German (Deutsch) 🇩🇪 
   * new languages can be added easily
-* Automatic Phonebook Generation - generates IP phone compatible phonebooks (including multiple saved phone numbers per contact)
+* **Automatic Phonebook Generation**
+  * generates IP phone compatible phonebooks (including multiple saved phone numbers per contact)
   * supported manufacturers (yet): yealink, fanvil 
-* FreePBX Module Wrapper
+* **FreePBX Module Wrapper**
   * Easy install via FreePBX Module Admin
   * Uses PM2 Module to run the backend service
   * Administration View in FreePBX to configure the panel
@@ -49,10 +50,11 @@ Compatible and tested on FreePBX version: **16.0.x**
 
 1. Go to FreePBX -> Admin -> Module Admin -> Upload Modules
 2. Upload the latest version of the module (tar.gz)
-3. Install and reload FreePBX (Apply Config)
+   1. link to latest version: https://github.com/adroste/freepbx-realtime-calls-contacts-panel/archive/main.tar.gz
+3. Install it and reload FreePBX (Apply Config)
 4. Go to FreePBX -> Admin -> Calls + Contacts Panel
 
-
+![](./screenshots/fpbxadminview.png)
 
 
 ## Advanced Usage
@@ -61,7 +63,9 @@ Compatible and tested on FreePBX version: **16.0.x**
   * Fanvil: http://myfreepbx:4848/callpanel/fanvil-phonebook.xml
   * Yealink: http://myfreepbx:4848/callpanel/yealink-phonebook.xml
 * Caller ID Lookup:
-  * You can add custom area codes to the configuration to improve lookup of numbers. E.g. if you saved a number without the area code and the incoming caller id includes it, it will match and if you saved a number with area code and the incoming caller id does not include it, it will also match.
+  * You can add custom area codes to the configuration to improve lookup of numbers. 
+    * Go to FreePBX -> Admin -> Calls + Contacts Panel -> Caller ID Prefixes and add your area codes like "+491234,01234".
+    * E.g. if you saved a number without the area code and the incoming caller id includes it, it will match and if you saved a number with area code and the incoming caller id does not include it, it will also match.
   * Create a CallerID Lookup Source like:
 
 ![](./screenshots/calleridlookupsource.png)
